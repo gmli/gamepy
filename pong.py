@@ -29,7 +29,7 @@ red = rgb.color565(255,0,0)
 # Le framebuffer principal sur lequel on blit tout. 
 # Ce FB sera lui-même blité à la fin sur l'écran via SPI en intégralité.
 fb = framebuf.FrameBuffer(bytearray(130*130*2), 130, 130, framebuf.RGB565)
-fb.fill_rect(int(0),    int(0),    130,130, black)
+fb.fill_rect(int(0),    int(0),    130,130, red)
 
 # Le palet (joueur).
 pad = framebuf.FrameBuffer(bytearray(5*30*2), 5, 30, framebuf.RGB565)
@@ -127,7 +127,7 @@ def move(display, speed_x, speed_y):
                 int(old_y)+offset_y) # OK
         fb.blit(player,
                 int(x)+offset_x,
-                int(y)+offset_y) # OK
+                int(y)+offset_y,0) # Le 0 est l'argument 'key' pour la transparence.
 
         fb.blit(pad_erase, 
                 0+offset_x, 
